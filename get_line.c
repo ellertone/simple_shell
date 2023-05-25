@@ -82,3 +82,26 @@ ssize_t get_line(char **lineptr, size_t *n, FILE *stream)
 		input = 0;
 	return (retval);
 }
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+{
+    void *new_ptr;
+
+    if (new_size == old_size)
+        return ptr;
+
+    new_ptr = malloc(new_size);
+    if (!new_ptr)
+    {
+        perror("Error: malloc failed");
+        return NULL;
+    }
+
+    if (ptr)
+    {
+        _memcpy(new_ptr, ptr, old_size);
+        free(ptr);
+    }
+
+    return new_ptr;
+}
+
