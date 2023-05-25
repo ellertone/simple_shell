@@ -11,6 +11,7 @@
 #include <fcntl.h>
 #include <signal.h>
 #include <limits.h>
+#include <string.h>
 
 #define BUFSIZE 1024
 #define TOK_BUFSIZE 128
@@ -110,7 +111,7 @@ char *_strchr(char *s, char c);
 int _strspn(char *s, char *accept);
 
 /* aux_mem.c */
-void _memcpy(void *newptr, const void *ptr, unsigned int size);
+void *_memcpy(void *dest, const void *src, size_t n);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char **_reallocdp(char **ptr, unsigned int old_size, unsigned int new_size);
 
@@ -229,5 +230,12 @@ void aux_help_cd(void);
 
 /* get_help.c */
 int get_help(data_shell *datash);
+
+/*additions*/
+int _unsetenv(data_shell *datash);
+int _setenv(data_shell *datash);
+void set_env(char *name, char *value, data_shell *datash);
+char *copy_info(char *name, char *value);
+
 
 #endif

@@ -59,3 +59,27 @@ void free_rvar_list(r_var **head)
 		*head = NULL;
 	}
 }
+
+char **_reallocdp(char **ptr, unsigned int old_size, unsigned int new_size)
+{
+    char **new_ptr;
+    unsigned int i;
+
+    if (new_size == old_size)
+        return (ptr);
+
+    new_ptr = malloc(sizeof(char *) * new_size);
+    if (!new_ptr)
+    {
+        perror("Error: malloc failed");
+        return (NULL);
+    }
+
+    for (i = 0; i < old_size && i < new_size; i++)
+        new_ptr[i] = ptr[i];
+
+    free(ptr);
+
+    return (new_ptr);
+}
+

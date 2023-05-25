@@ -127,3 +127,15 @@ int _isdigit(const char *s)
 	}
 	return (1);
 }
+
+void *_memcpy(void *dest, const void *src, size_t n)
+{
+	unsigned char *d = dest;
+	const unsigned char *s = src;
+	size_t i;
+
+	for (i = 0; i < n; i++)
+		d[i] = s[i];
+
+	return dest;
+}
